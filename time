@@ -1,1 +1,108 @@
 
+using System;
+
+namespace TimeLibrary
+{
+    public struct Time
+    {
+        public byte Hours { get; }
+        public byte Minutes { get; }
+        public byte Seconds { get; }
+
+        public Time(byte hours, byte minutes, byte seconds)
+        {
+            if (hours >= 24 || minutes >= 60 || seconds >= 60)
+            {
+                throw new ArgumentException("Invalid time format.");
+            }
+
+            Hours = hours;
+            Minutes = minutes;
+            Seconds = seconds;
+        }
+
+        // Other constructors, methods, and properties as needed
+
+        // Unit tests for Time struct
+        // ...
+
+        // Implement IEquatable and IComparable interfaces
+        // ...
+
+        // XML documentation for public members
+        /// <summary>
+        /// Represents a specific time of day.
+        /// </summary>
+        // ...
+
+        public override string ToString()
+        {
+            return $"{Hours:D2}:{Minutes:D2}:{Seconds:D2}";
+        }
+    }
+
+    public struct TimePeriod
+    {
+        private readonly long _totalSeconds;
+
+        public TimePeriod(long totalSeconds)
+        {
+            _totalSeconds = totalSeconds;
+        }
+
+        // Other constructors, methods, and properties as needed
+
+        // Unit tests for TimePeriod struct
+        // ...
+
+        // Implement IEquatable and IComparable interfaces
+        // ...
+
+        // XML documentation for public members
+        /// <summary>
+        /// Represents a duration of time.
+        /// </summary>
+        // ...
+
+        public override string ToString()
+        {
+            // Convert total seconds to hours, minutes, seconds format
+            // and return as a string
+            return $"{_totalSeconds / 3600:D2}:{(_totalSeconds % 3600) / 60:D2}:{_totalSeconds % 60:D2}";
+        }
+    }
+
+    public static class TimeExtensions
+    {
+        public static Time Plus(this Time time, TimePeriod period)
+        {
+            // Perform addition operation and return the result as a new Time instance
+            // Note: Implement logic for handling overflow
+        }
+
+        // Other arithmetic operations as needed
+    }
+
+    public static class TimePeriodExtensions
+    {
+        public static TimePeriod Plus(this TimePeriod period1, TimePeriod period2)
+        {
+            // Perform addition operation and return the result as a new TimePeriod instance
+            // Note: Implement logic for handling overflow
+        }
+
+        // Other arithmetic operations as needed
+    }
+
+    public class Program
+    {
+        static void Main(string[] args)
+        {
+            // Demo code showcasing the usage of Time and TimePeriod structs
+            // ...
+
+            // Additional functionality for handling milliseconds (optional)
+            // ...
+        }
+    }
+}
